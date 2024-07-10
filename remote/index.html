@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IOT-Remote</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="bootstrap.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style type="text/css">
+    body{
+        transition:50s;
+        margin:0px;
+        user-select:none;
+        touch-action:manipulation;
+        background-color:black;
+        color:gray;
+        background-image:url('logo.png');
+    background-repeat:no-repeat;
+    background-size:50%;
+    background-position:75% 25%;
+    }
+    th{
+      text-align:right;
+    }
+    .platestart{
+      transition:0.5s;
+      display:flex;
+      overflow-x:auto;
+      padding:0px;
+      background:gray;
+      color:gray;
+      border-radius:100px 0px 0px 100px;
+      margin-left:100%;
+    }
+    .plates{
+      transition:0.5s;
+      scroll-behavior:smooth;
+      display:flex;
+      overflow-x:auto;
+      padding:10px;
+      backdrop-filter:blur(10px);
+      background-color:rgba(0,0,0,0.5);
+      border-radius:25px 0px 0px 25px;
+      border:0.2px solid gray;
+      margin-left:20px;
+    }
+    .platestart2{
+      transition:1s;
+      display:flex;
+      overflow-x:auto;
+      padding:0px;
+      background:gray;
+      color:gray;
+      border-radius:0px 100px 100px 0px;
+      margin-left:-100%;
+    }
+    .plates2{
+      transition:1s;
+      scroll-behavior:smooth;
+      display:flex;
+      overflow-x:auto;
+      padding:10px;
+      backdrop-filter:blur(10px);
+      background-color:rgba(0,0,0,0.5);
+      border-radius:0px 25px 25px 0px;
+      border:0.2px solid gray;
+      margin-left:-20px;
+    }
+
+    .platestart3{
+      transition:1.5s;
+      display:flex;
+      overflow-x:auto;
+      padding:0px;
+      background:gray;
+      color:gray;
+      border-radius:100px 0px 0px 100px;
+      margin-left:100%;
+    }
+    .plates3{
+      transition:1.5s;
+      scroll-behavior:smooth;
+      display:flex;
+      overflow-x:auto;
+      padding:10px;
+      backdrop-filter:blur(10px);
+      background-color:rgba(0,0,0,0.5);
+      border-radius:25px 0px 0px 25px;
+      border:0.2px solid gray;
+      margin-left:20px;
+    }
+    .platestart4{
+      transition:2s;
+      display:flex;
+      overflow-x:auto;
+      padding:0px;
+      background:gray;
+      color:gray;
+      border-radius:0px 100px 100px 0px;
+      margin-left:-100%;
+    }
+    .plates4{
+      transition:2s;
+      scroll-behavior:smooth;
+      display:flex;
+      overflow-x:auto;
+      padding:10px;
+      backdrop-filter:blur(10px);
+      background-color:rgba(0,0,0,0.5);
+      border-radius:0px 25px 25px 0px;
+      border:0.2px solid gray;
+      margin-left:-20px;
+    }
+
+    .plate{
+      width:fit-content;
+      padding:15px;
+      margin:10px;
+      border-radius:25px;
+      transition:0.5s;
+    }
+    .on:active,.off:active,.switch:active,.auto:active{
+      width:fit-content;
+      padding:15px;
+      border-radius:100px;
+      box-shadow:inset 0px 0px 0px 5px red;
+      color:red;
+      margin:10px;
+      transition:3s;
+    }
+    .off{
+      box-shadow:inset 0px 0px 0px 0.5px gray;
+      color:gray;
+      transition:0.5s;
+    }
+    .switch{
+        transition:1s;
+        border-radius:50px;
+        background:gray;
+        color:white;
+        box-shadow:inset 0px 0px 0px 3px white;
+        text-shadow:0px 0px 5px lightblue;
+    }
+    .on{
+        color:yellow;
+        box-shadow:inset 0px 0px 0px 1px yellow;
+        text-shadow:0px 0px 10px white;
+    }
+    .auto{
+        color:blue;
+        box-shadow:inset 0px 0px 0px 1px blue;
+        text-shadow:0px 0px 10px white;
+    }
+    .sense{
+        color:green;
+        box-shadow:inset 0px 0px 0px 1px green;
+        text-shadow:0px 0px 10px white;
+    }
+    i{
+        font-size:35px!important;
+    }
+    .txt{
+        white-space:nowrap;
+        width:35px;
+        overflow:hidden;
+    }
+  </style>
+</head>
+<body onload="load()">
+<script type="text/javascript">
+
+// var auto_refresh = setInterval(
+//   function ()
+//   {
+//     $.ajax('<?= base_url()?>index.php/remote/live/device').then(function(device){
+//         $("#device").empty();
+//         $("#device").append(device);
+//     });
+//     $.ajax('<?= base_url()?>index.php/remote/live/date').then(function(date){
+//         $("#date").empty();
+//         $("#date").append(date);
+//     });
+//     $.ajax('<?= base_url()?>index.php/remote/live/ua').then(function(ua){
+//         $("#ua").empty();
+//         $("#ua").append(ua);
+//     });
+//     $.ajax('<?= base_url()?>index.php/remote/live/ip').then(function(ip){
+//         $("#ip").empty();
+//         $("#ip").append(ip);
+//     });
+//   },500);
+
+</script>
+<div id="load"
+style="
+    position:fixed;
+    z-index:100;
+    width:100vw;
+    height:100vh;
+    transition:1s;
+    backdrop-filter:blur(10px);
+    background-color:black;
+    background-image:url('logo.png');
+    background-repeat:no-repeat;
+    background-size:50%;
+    background-position:center center;
+"></div>
+
+<div
+style="
+    top:0px;
+    position:fixed;
+    z-index:-10;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,0.5);
+"></div>
+
+<div id="pop" 
+style="
+    top:-40vh;
+    left:-100vw;
+    position:fixed;
+    z-index:99;
+    width:100vw;
+    height:40vh;
+    background-color:gray;
+    border-radius:100px;
+">
+</div>
+
+<div id="popbg" 
+onclick="
+    $('#popbg').css('transition','300ms');
+    $('#popbg').css('top','-100vh');
+    $('#popbg').css('left','-100vw');
+
+    $('#pop').css('transition','300ms');
+    $('#pop').css('top','-40vh');
+    $('#pop').css('left','-100vw');
+    $('#pop').css('border-radius','100%');
+
+"
+style="
+    top:-100vh;
+    left:-100vw;
+    position:fixed;
+    z-index:98;
+    width:100vw;
+    height:100vh;
+    backdrop-filter:blur(10px);
+    background-color:rgba(0,0,0,0.5);
+    border-radius:100px;
+">
+</div>
+
+<div class="container">
+  <br><br><br>
+  <div class="row">
+    <div class="col platestart" id="scr">
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe90f;</i>
+        <br>
+        <div class="txt">bulb torch</div>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe25f;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe405;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe3c6;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe41a;</i>
+      </div>
+      <div class="plate off" data="off" style="visibility:hidden;">
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+  <div class="row">
+    <div class="col platestart2" id="scr2">
+      <div class="plate off" data="off" style="visibility:hidden;">
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe41a;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe3c6;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe405;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe25f;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe90f;</i>
+        <br>
+        <div class="txt">bulb torch</div>
+      </div>
+      <div class="plate off" data="off" style="visibility:hidden;">
+      </div>
+    </div>
+  </div>
+
+  <br><br><br>
+  <div class="row">
+    <div class="col platestart3" id="scr3">
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe90f;</i>
+        <br>
+        <div class="txt">bulb torch</div>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe25f;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe405;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe3c6;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe41a;</i>
+      </div>
+      <div class="plate off" data="off" style="visibility:hidden;">
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+  <div class="row">
+    <div class="col platestart4" id="scr4">
+      <div class="plate off" data="off" style="visibility:hidden;">
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe41a;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe3c6;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe405;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe62d;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe25f;</i>
+      </div>
+      <div class="plate off" data="off" 
+           onclick="clic(this);"
+           ondblclick="doblclick(this);" 
+           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
+        >
+        <i class="material-icons">&#xe90f;</i>
+        <br>
+        <div class="txt">bulb torch</div>
+      </div>
+      <div class="plate off" data="off" style="visibility:hidden;">
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+<!--
+  <div class="row">
+    <div class="col" style="display:flex;overflow-x:auto;padding:10px;">
+      <div class="plate">
+        <text>Bg</text><br>
+        <input onchange="bgcolor(this.value);" value="#ffffff" type="color" id="bgcolor">
+      </div>
+      <div class="plate">
+        <text>Text color</text><br>
+        <input onchange="textc(this.value);" value="#000000" type="color" id="textc">
+      </div>
+      <div class="plate">
+        <text>Text</text><br>
+        <input onkeyup="text(this.value);" value=" " type="text" id="text">
+      </div>
+      <div class="plate">
+        <text>Text size</text><br>
+        <input onkeyup="ts(this.value);" onchange="ts(this.value);" style="width:50px;" type="number" value="40" id="ts">
+      </div>
+
+    </div>
+  </div>
+  <br>
+	<div class="row">
+		<div class="col">
+      <div class="table-responsive f2" style="border-radius: 10px;box-shadow:0px 0px 10px 0px#80808080;">
+        <table class='table table-bordered table-sm table-hover table-striped' style='white-space:nowrap;'>
+            <tr><th colspan="2" style="text-align:center;">Last connected device info</th></tr>
+            <tr><th>DEVICE_TYPE</th><td id="device"></td></tr>
+            <tr><th>DATE & TIME</th><td id="date"></td></tr>
+            <tr><th>HTTP_REFERER</th><td></td></tr>
+            <tr><th>USER_AGENT</th><td id="ua"></td></tr>
+            <tr><th>IP</th><td id="ip"></td></tr>
+            <tr><th></th><td>https://firmtech.tech/products/iot/index.php/devices</td></tr>
+        </table>
+      </div>
+		</div>
+	</div>
+  <br>
+  <div class="row">
+    <div class="col" style="text-align:center;">
+      <p>Last location if have</p>
+      <?php
+        if($lat == 'null'){ ?>
+          <p align="center" style="color:red;">Null</p>
+        <?php } else { ?>
+          <iframe id="iframe" src="https://maps.google.com/maps?q=<?=$lat?>, <?=$lot?>&z=15&output=embed" style="width:50vh;height:50vh;"></iframe>
+        <?php } ?>
+    </div>
+  </div>
+  <br>
+	<div class="row">
+		<div class="col" style="text-align:center;">
+			<a class="btn btn-primary" href="<?=base_url()?>remote/reset">Reset / Clear</a>
+		</div>
+	</div>
+	-->
+  <br>
+</div>
+
+<script type="text/javascript">
+  var animate;
+  function clic(thi){
+      $(thi).attr("class","plate switch");
+      if($(thi).attr("data") != 'off'){
+        $.ajax("<?=base_url()?>index.php/remote/torch/on")
+        .then(function(response){
+          if(response=='err'){
+            alert("error");
+          }
+        }).fail(function(err){ 
+            
+            setTimeout(function(){
+                $(thi).attr("data","off");
+                $(thi).attr("class","plate off");
+            },1000);
+            
+        } )
+      }
+      else if($(thi).attr("data") != 'on'){
+        $.ajax("<?=base_url()?>index.php/remote/torch/off")
+        .then(function(response){
+          if(response=='err'){
+            alert("error");
+          }
+        }).fail(function(err){ 
+            
+            setTimeout(function(){
+                $(thi).attr("data","on");
+                $(thi).attr("class","plate on");
+            },1000);
+            
+        } )
+      }
+  };
+  function doblclick(thi){
+
+      $(thi).attr("class","plate switch");
+      if($(thi).attr("data") != 'auto'){
+        $.ajax("<?=base_url()?>index.php/remote/torch/on")
+        .then(function(response){
+          if(response=='err'){
+            alert("error");
+          }
+        }).fail(function(err){ 
+            
+            setTimeout(function(){
+                $(thi).attr("data","auto");
+                $(thi).attr("class","plate auto");
+            },1000);
+            
+        } )
+      }
+      else if($(thi).attr("data") == 'auto'){
+        $.ajax("<?=base_url()?>index.php/remote/torch/off")
+        .then(function(response){
+          if(response=='err'){
+            alert("error");
+          }
+        }).fail(function(err){ 
+            
+            setTimeout(function(){
+                $(thi).attr("data","off");
+                $(thi).attr("class","plate off");
+            },1000);
+            
+        } )
+      }
+
+
+  };
+  function touchstart(thi){
+    animate = setTimeout(function(){
+      $(thi).attr("class","plate switch");
+      if($(thi).attr("data") != 'sense'){
+        $.ajax("<?=base_url()?>index.php/remote/torch/on")
+        .then(function(response){
+          if(response=='err'){
+            alert("error");
+          }
+        }).fail(function(err){ 
+            
+    $('#popbg').css('transition','500ms');
+    $('#popbg').css('top','0px');
+    $('#popbg').css('left','0px');
+    $('#popbg').css('border-radius','0px')
+
+    $('#pop').css('transition','500ms');
+    $('#pop').css('top','0px');
+    $('#pop').css('left','0px');
+    $('#pop').css('border-radius','0px 0px 40px 40px');
+
+            
+            setTimeout(function(){
+                $(thi).attr("data","sense");
+                $(thi).attr("class","plate sense");
+            },1000);
+            
+        } )
+      }
+      else if($(thi).attr("data") == 'sense'){
+        $.ajax("<?=base_url()?>index.php/remote/torch/off")
+        .then(function(response){
+          if(response=='err'){
+            alert("error");
+          }
+        }).fail(function(err){ 
+            
+            setTimeout(function(){
+                $(thi).attr("data","off");
+                $(thi).attr("class","plate off");
+            },1000);
+        } )
+      }
+    },1000);
+  };
+  function touchend(){
+    clearTimeout(animate);
+  }
+</script>
+<script type="text/javascript">
+
+// function bgcolor(thi){
+//   thi = thi.replace('#','');
+//   $.ajax("<?=base_url()?>index.php/remote/css/bgcolor/"+thi)
+//   .then(function(response){
+//     if(response=='err'){
+//       alert("error");
+//     }
+//   }).fail(function(err){ alert("Server failed error"+err); } )
+// }
+// function textc(thi){
+//   thi = thi.replace('#','');
+//   $.ajax("<?=base_url()?>index.php/remote/css/textc/"+thi)
+//   .then(function(response){
+//     if(response=='err'){
+//       alert("error");
+//     }
+//   }).fail(function(err){ alert("Server failed error"+err); } )
+// }
+// function text(thi){
+//   $.ajax("<?=base_url()?>index.php/remote/css/text/"+thi)
+//   .then(function(response){
+//     if(response=='err'){
+//       alert("error");
+//     }
+//   }).fail(function(err){ alert("Server failed error"+err); } )
+// }
+// function ts(thi){
+//   $.ajax("<?=base_url()?>index.php/remote/css/ts/"+thi+"px")
+//   .then(function(response){
+//     if(response=='err'){
+//       alert("error");
+//     }
+//   }).fail(function(err){ alert("Server failed error"+err); } )
+// }
+</script>
+<script>
+var 
+  scr = document.getElementById('scr'),
+  scr2 = document.getElementById('scr2'),
+  scr3 = document.getElementById('scr3'),
+  scr4 = document.getElementById('scr4');
+function load(){
+
+    var load = document.getElementById('load');
+    $('#load').css('background-color','rgba(0,0,0,0.5)');
+    $('#load').css('backdrop-filter','blur(10px)');
+    setTimeout(function(){
+        $('#load').css('background-color','rgba(0,0,0,0.25)');
+        $('#load').css('backdrop-filter','blur(5px)');
+        setTimeout(function(){
+            $('#load').hide('slow')
+        },250); 
+    },250);
+
+    scr.scrollBy({top:0,left:10000,behavior:'smooth'});
+    setTimeout(function(){
+        $('.platestart').attr('class','col plates');
+        setTimeout(function(){
+            scr.scrollBy({top:0,left:-10000,behavior:'smooth'});
+        },500); 
+    },500);
+
+    scr2.scrollBy({top:0,left:10000,behavior:'smooth'});
+    setTimeout(function(){
+        $('.platestart2').attr('class','col plates2');
+        setTimeout(function(){
+            scr2.scrollBy({top:0,left:-10000,behavior:'smooth'});
+        },1000); 
+    },1000);
+    
+    scr3.scrollBy({top:0,left:10000,behavior:'smooth'});
+    setTimeout(function(){
+        $('.platestart3').attr('class','col plates3');
+        setTimeout(function(){
+            scr3.scrollBy({top:0,left:-10000,behavior:'smooth'});
+        },1500); 
+    },1500);
+
+    scr4.scrollBy({top:0,left:10000,behavior:'smooth'});
+    setTimeout(function(){
+        $('.platestart4').attr('class','col plates4');
+        setTimeout(function(){
+            scr4.scrollBy({top:0,left:-10000,behavior:'smooth'});
+        },2000); 
+    },2000);
+}
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  scr.style.transition='1.5s';
+  scr2.style.transition='2s';
+  scr3.style.transition='2.5s';
+  scr4.style.transition='3s';
+  if (prevScrollpos > currentScrollPos) {
+    scr.style.marginTop='0px';
+    scr2.style.marginTop='0px';
+    scr3.style.marginTop='0px';
+    scr4.style.marginTop='0px';
+    $('body').css('background-size','300%');
+    $('body').css('background-position','25% 75%');
+
+  } else {
+    scr.style.marginTop='50px';
+    scr2.style.marginTop='40px';
+    scr3.style.marginTop='30px';
+    scr4.style.marginTop='20px';
+    $('body').css('background-size','500%');
+    $('body').css('background-position','75% 75%');
+  }
+  prevScrollpos = currentScrollPos;
+}
+</script>
+</body>
+</html>

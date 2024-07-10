@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Example</title>
+	<title>IOT Firebase</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style type="text/css">
+		button{
+			width: 100%;
+			height: 20vh;
+			font-size: 5vh;
+		}
+	</style>
 </head>
 <body>
-  <input type="text" id="textInput">
-  <button onclick="writeData()">Add Data</button>
-  <ul id="dataList"></ul>
-<!-- Include Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-  <!-- Include Firebase SDK -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script> -->
-  
-  <!-- <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js"></script> -->
-  <script src="firebase-config.js"></script>
-  <script src="app.js"></script>
+	<a href="devices">
+		<button><i class="material-icons">&#xe337;</i> Devices</button>
+	</a>
+	<br><br>
+	<a href="remote">
+		<button><i class="material-icons">&#xe8c7;</i> Remote</button>
+	</a>
+	<br>
 </body>
 </html>
