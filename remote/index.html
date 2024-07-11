@@ -3,168 +3,9 @@
 <head>
 	<title>IOT-Remote</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="bootstrap.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <style type="text/css">
-    body{
-        transition:50s;
-        margin:0px;
-        user-select:none;
-        touch-action:manipulation;
-        background-color:black;
-        color:gray;
-        background-image:url('logo.png');
-    background-repeat:no-repeat;
-    background-size:50%;
-    background-position:75% 25%;
-    }
-    th{
-      text-align:right;
-    }
-    .platestart{
-      transition:0.5s;
-      display:flex;
-      overflow-x:auto;
-      padding:0px;
-      background:gray;
-      color:gray;
-      border-radius:100px 0px 0px 100px;
-      margin-left:100%;
-    }
-    .plates{
-      transition:0.5s;
-      scroll-behavior:smooth;
-      display:flex;
-      overflow-x:auto;
-      padding:10px;
-      backdrop-filter:blur(10px);
-      background-color:rgba(0,0,0,0.5);
-      border-radius:25px 0px 0px 25px;
-      border:0.2px solid gray;
-      margin-left:20px;
-    }
-    .platestart2{
-      transition:1s;
-      display:flex;
-      overflow-x:auto;
-      padding:0px;
-      background:gray;
-      color:gray;
-      border-radius:0px 100px 100px 0px;
-      margin-left:-100%;
-    }
-    .plates2{
-      transition:1s;
-      scroll-behavior:smooth;
-      display:flex;
-      overflow-x:auto;
-      padding:10px;
-      backdrop-filter:blur(10px);
-      background-color:rgba(0,0,0,0.5);
-      border-radius:0px 25px 25px 0px;
-      border:0.2px solid gray;
-      margin-left:-20px;
-    }
-
-    .platestart3{
-      transition:1.5s;
-      display:flex;
-      overflow-x:auto;
-      padding:0px;
-      background:gray;
-      color:gray;
-      border-radius:100px 0px 0px 100px;
-      margin-left:100%;
-    }
-    .plates3{
-      transition:1.5s;
-      scroll-behavior:smooth;
-      display:flex;
-      overflow-x:auto;
-      padding:10px;
-      backdrop-filter:blur(10px);
-      background-color:rgba(0,0,0,0.5);
-      border-radius:25px 0px 0px 25px;
-      border:0.2px solid gray;
-      margin-left:20px;
-    }
-    .platestart4{
-      transition:2s;
-      display:flex;
-      overflow-x:auto;
-      padding:0px;
-      background:gray;
-      color:gray;
-      border-radius:0px 100px 100px 0px;
-      margin-left:-100%;
-    }
-    .plates4{
-      transition:2s;
-      scroll-behavior:smooth;
-      display:flex;
-      overflow-x:auto;
-      padding:10px;
-      backdrop-filter:blur(10px);
-      background-color:rgba(0,0,0,0.5);
-      border-radius:0px 25px 25px 0px;
-      border:0.2px solid gray;
-      margin-left:-20px;
-    }
-
-    .plate{
-      width:fit-content;
-      padding:15px;
-      margin:10px;
-      border-radius:25px;
-      transition:0.5s;
-    }
-    .on:active,.off:active,.switch:active,.auto:active{
-      width:fit-content;
-      padding:15px;
-      border-radius:100px;
-      box-shadow:inset 0px 0px 0px 5px red;
-      color:red;
-      margin:10px;
-      transition:3s;
-    }
-    .off{
-      box-shadow:inset 0px 0px 0px 0.5px gray;
-      color:gray;
-      transition:0.5s;
-    }
-    .switch{
-        transition:1s;
-        border-radius:50px;
-        background:gray;
-        color:white;
-        box-shadow:inset 0px 0px 0px 3px white;
-        text-shadow:0px 0px 5px lightblue;
-    }
-    .on{
-        color:yellow;
-        box-shadow:inset 0px 0px 0px 1px yellow;
-        text-shadow:0px 0px 10px white;
-    }
-    .auto{
-        color:blue;
-        box-shadow:inset 0px 0px 0px 1px blue;
-        text-shadow:0px 0px 10px white;
-    }
-    .sense{
-        color:green;
-        box-shadow:inset 0px 0px 0px 1px green;
-        text-shadow:0px 0px 10px white;
-    }
-    i{
-        font-size:35px!important;
-    }
-    .txt{
-        white-space:nowrap;
-        width:35px;
-        overflow:hidden;
-    }
-  </style>
 </head>
 <body onload="load()">
 <script type="text/javascript">
@@ -197,7 +38,7 @@ style="
     z-index:100;
     width:100vw;
     height:100vh;
-    transition:1s;
+    transition:500ms;
     backdrop-filter:blur(10px);
     background-color:black;
     background-image:url('logo.png');
@@ -375,124 +216,6 @@ style="
   </div>
 
   <br><br><br>
-  <div class="row">
-    <div class="col platestart3" id="scr3">
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe90f;</i>
-        <br>
-        <div class="txt">bulb torch</div>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe25f;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe405;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe3c6;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe41a;</i>
-      </div>
-      <div class="plate off" data="off" style="visibility:hidden;">
-      </div>
-    </div>
-  </div>
-  <br><br><br>
-  <div class="row">
-    <div class="col platestart4" id="scr4">
-      <div class="plate off" data="off" style="visibility:hidden;">
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe41a;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe3c6;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe405;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe25f;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe90f;</i>
-        <br>
-        <div class="txt">bulb torch</div>
-      </div>
-      <div class="plate off" data="off" style="visibility:hidden;">
-      </div>
-    </div>
-  </div>
-  <br><br><br>
 <!--
   <div class="row">
     <div class="col" style="display:flex;overflow-x:auto;padding:10px;">
@@ -568,7 +291,7 @@ style="
             setTimeout(function(){
                 $(thi).attr("data","off");
                 $(thi).attr("class","plate off");
-            },1000);
+            },500);
             
         } )
       }
@@ -583,7 +306,7 @@ style="
             setTimeout(function(){
                 $(thi).attr("data","on");
                 $(thi).attr("class","plate on");
-            },1000);
+            },500);
             
         } )
       }
@@ -602,7 +325,7 @@ style="
             setTimeout(function(){
                 $(thi).attr("data","auto");
                 $(thi).attr("class","plate auto");
-            },1000);
+            },500);
             
         } )
       }
@@ -617,7 +340,7 @@ style="
             setTimeout(function(){
                 $(thi).attr("data","off");
                 $(thi).attr("class","plate off");
-            },1000);
+            },500);
             
         } )
       }
@@ -649,7 +372,7 @@ style="
             setTimeout(function(){
                 $(thi).attr("data","sense");
                 $(thi).attr("class","plate sense");
-            },1000);
+            },500);
             
         } )
       }
@@ -664,10 +387,10 @@ style="
             setTimeout(function(){
                 $(thi).attr("data","off");
                 $(thi).attr("class","plate off");
-            },1000);
+            },500);
         } )
       }
-    },1000);
+    },500);
   };
   function touchend(){
     clearTimeout(animate);
@@ -713,9 +436,7 @@ style="
 <script>
 var 
   scr = document.getElementById('scr'),
-  scr2 = document.getElementById('scr2'),
-  scr3 = document.getElementById('scr3'),
-  scr4 = document.getElementById('scr4');
+  scr2 = document.getElementById('scr2')
 function load(){
 
     var load = document.getElementById('load');
@@ -742,50 +463,10 @@ function load(){
         $('.platestart2').attr('class','col plates2');
         setTimeout(function(){
             scr2.scrollBy({top:0,left:-10000,behavior:'smooth'});
-        },1000); 
-    },1000);
-    
-    scr3.scrollBy({top:0,left:10000,behavior:'smooth'});
-    setTimeout(function(){
-        $('.platestart3').attr('class','col plates3');
-        setTimeout(function(){
-            scr3.scrollBy({top:0,left:-10000,behavior:'smooth'});
-        },1500); 
-    },1500);
-
-    scr4.scrollBy({top:0,left:10000,behavior:'smooth'});
-    setTimeout(function(){
-        $('.platestart4').attr('class','col plates4');
-        setTimeout(function(){
-            scr4.scrollBy({top:0,left:-10000,behavior:'smooth'});
-        },2000); 
-    },2000);
+        },500); 
+    },500);
 }
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-  scr.style.transition='1.5s';
-  scr2.style.transition='2s';
-  scr3.style.transition='2.5s';
-  scr4.style.transition='3s';
-  if (prevScrollpos > currentScrollPos) {
-    scr.style.marginTop='0px';
-    scr2.style.marginTop='0px';
-    scr3.style.marginTop='0px';
-    scr4.style.marginTop='0px';
-    $('body').css('background-size','300%');
-    $('body').css('background-position','25% 75%');
 
-  } else {
-    scr.style.marginTop='50px';
-    scr2.style.marginTop='40px';
-    scr3.style.marginTop='30px';
-    scr4.style.marginTop='20px';
-    $('body').css('background-size','500%');
-    $('body').css('background-position','75% 75%');
-  }
-  prevScrollpos = currentScrollPos;
-}
 </script>
 </body>
 </html>

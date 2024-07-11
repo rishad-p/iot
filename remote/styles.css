@@ -1,0 +1,112 @@
+body{
+    transition:500ms;
+    margin:0px;
+    user-select:none;
+    touch-action:manipulation;
+    background-color:black;
+    color:gray;
+        background-image:url('logo.png');
+    background-repeat:no-repeat;
+    background-size:50%;
+    background-position:75% 25%;
+}
+th{
+  text-align:right;
+}
+.platestart{
+  transition:500ms;
+  display:flex;
+  overflow-x:auto;
+  padding:0px;
+  background:gray;
+  color:gray;
+  border-radius:100px 0px 0px 100px;
+  margin-left:100%;
+}
+.plates{
+  transition:500ms;
+  scroll-behavior:smooth;
+  display:flex;
+  overflow-x:auto;
+  padding:10px;
+  backdrop-filter:blur(10px);
+  background-color:rgba(0,0,0,0.5);
+  border-radius:25px 0px 0px 25px;
+  border:0.2px solid gray;
+  margin-left:20px;
+}
+.platestart2{
+  transition:500ms;
+  display:flex;
+  overflow-x:auto;
+  padding:0px;
+  background:gray;
+  color:gray;
+  border-radius:0px 100px 100px 0px;
+  margin-left:-100%;
+}
+.plates2{
+  transition:500ms;
+  scroll-behavior:smooth;
+  display:flex;
+  overflow-x:auto;
+  padding:10px;
+  backdrop-filter:blur(10px);
+  background-color:rgba(0,0,0,0.5);
+  border-radius:0px 25px 25px 0px;
+  border:0.2px solid gray;
+  margin-left:-20px;
+}
+
+.plate{
+  width:fit-content;
+  padding:15px;
+  margin:10px;
+  border-radius:25px;
+  transition:500ms;
+}
+.on:active,.off:active,.switch:active,.auto:active{
+  width:fit-content;
+  padding:15px;
+  border-radius:100px;
+  box-shadow:inset 0px 0px 0px 5px red;
+  color:red;
+  margin:10px;
+  transition:500ms;
+}
+.off{
+  box-shadow:inset 0px 0px 0px 0.5px gray;
+  color:gray;
+  transition:500ms;
+}
+.switch{
+    transition:500ms;
+    border-radius:50px;
+    background:gray;
+    color:white;
+    box-shadow:inset 0px 0px 0px 3px white;
+    text-shadow:0px 0px 5px lightblue;
+}
+.on{
+    color:yellow;
+    box-shadow:inset 0px 0px 0px 1px yellow;
+    text-shadow:0px 0px 10px white;
+}
+.auto{
+    color:blue;
+    box-shadow:inset 0px 0px 0px 1px blue;
+    text-shadow:0px 0px 10px white;
+}
+.sense{
+    color:green;
+    box-shadow:inset 0px 0px 0px 1px green;
+    text-shadow:0px 0px 10px white;
+}
+i{
+    font-size:35px!important;
+}
+.txt{
+    white-space:nowrap;
+    width:35px;
+    overflow:hidden;
+}
