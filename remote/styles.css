@@ -5,10 +5,33 @@ body{
     touch-action:manipulation;
     background-color:black;
     color:gray;
-        background-image:url('logo.png');
+    background-image:url('logo.png');
     background-repeat:no-repeat;
     background-size:50%;
     background-position:75% 25%;
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+#load{
+    position:fixed;
+    z-index:100;
+    width:100vw;
+    height:100vh;
+    transition:500ms;
+    backdrop-filter:blur(10px);
+    background-color:black;
+    background-image:url('logo.png');
+    background-repeat:no-repeat;
+    background-size:50%;
+    background-position:center center;
+}
+#bg_mask{
+    top:0px;
+    position:fixed;
+    z-index:-10;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,0.5);
 }
 th{
   text-align:right;
@@ -64,6 +87,7 @@ th{
   margin:10px;
   border-radius:25px;
   transition:500ms;
+  cursor: pointer;
 }
 .on:active,.off:active,.switch:active,.auto:active{
   width:fit-content;

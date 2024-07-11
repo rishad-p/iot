@@ -1,452 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>IOT-Remote</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="styles.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>IOT-Remote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body onload="load()">
-<script type="text/javascript">
-
-// var auto_refresh = setInterval(
-//   function ()
-//   {
-//     $.ajax('<?= base_url()?>index.php/remote/live/device').then(function(device){
-//         $("#device").empty();
-//         $("#device").append(device);
-//     });
-//     $.ajax('<?= base_url()?>index.php/remote/live/date').then(function(date){
-//         $("#date").empty();
-//         $("#date").append(date);
-//     });
-//     $.ajax('<?= base_url()?>index.php/remote/live/ua').then(function(ua){
-//         $("#ua").empty();
-//         $("#ua").append(ua);
-//     });
-//     $.ajax('<?= base_url()?>index.php/remote/live/ip').then(function(ip){
-//         $("#ip").empty();
-//         $("#ip").append(ip);
-//     });
-//   },500);
-
-</script>
-<div id="load"
-style="
-    position:fixed;
-    z-index:100;
-    width:100vw;
-    height:100vh;
-    transition:500ms;
-    backdrop-filter:blur(10px);
-    background-color:black;
-    background-image:url('logo.png');
-    background-repeat:no-repeat;
-    background-size:50%;
-    background-position:center center;
-"></div>
-
-<div
-style="
-    top:0px;
-    position:fixed;
-    z-index:-10;
-    width:100vw;
-    height:100vh;
-    background-color:rgba(0,0,0,0.5);
-"></div>
-
-<div id="pop" 
-style="
-    top:-40vh;
-    left:-100vw;
-    position:fixed;
-    z-index:99;
-    width:100vw;
-    height:40vh;
-    background-color:gray;
-    border-radius:100px;
-">
-</div>
-
-<div id="popbg" 
-onclick="
-    $('#popbg').css('transition','300ms');
-    $('#popbg').css('top','-100vh');
-    $('#popbg').css('left','-100vw');
-
-    $('#pop').css('transition','300ms');
-    $('#pop').css('top','-40vh');
-    $('#pop').css('left','-100vw');
-    $('#pop').css('border-radius','100%');
-
-"
-style="
-    top:-100vh;
-    left:-100vw;
-    position:fixed;
-    z-index:98;
-    width:100vw;
-    height:100vh;
-    backdrop-filter:blur(10px);
-    background-color:rgba(0,0,0,0.5);
-    border-radius:100px;
-">
-</div>
-
+<div id="load"></div>
+<div id="bg_mask"></div>
 <div class="container">
   <br><br><br>
   <div class="row">
     <div class="col platestart" id="scr">
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe90f;</i>
-        <br>
-        <div class="txt">bulb torch</div>
+        <div class="txt">bulb</div>
       </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe25f;</i>
+        <div class="txt">torch</div>
       </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe62d;</i>
       </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe62d;</i>
       </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe405;</i>
       </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe3c6;</i>
       </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
+      <div class="plate off" data="off" onclick="clic(this);">
         <i class="material-icons">&#xe41a;</i>
       </div>
       <div class="plate off" data="off" style="visibility:hidden;">
       </div>
     </div>
   </div>
-  <br><br><br>
-  <div class="row">
-    <div class="col platestart2" id="scr2">
-      <div class="plate off" data="off" style="visibility:hidden;">
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe41a;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe3c6;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe405;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe25f;</i>
-      </div>
-      <div class="plate off" data="off" 
-           onclick="clic(this);"
-           ondblclick="doblclick(this);" 
-           ontouchstart="touchstart(this);" ontouchend="touchend();" ontouchmove="touchend();"
-        >
-        <i class="material-icons">&#xe90f;</i>
-        <br>
-        <div class="txt">bulb torch</div>
-      </div>
-      <div class="plate off" data="off" style="visibility:hidden;">
-      </div>
-    </div>
-  </div>
 
-  <br><br><br>
-<!--
-  <div class="row">
-    <div class="col" style="display:flex;overflow-x:auto;padding:10px;">
-      <div class="plate">
-        <text>Bg</text><br>
-        <input onchange="bgcolor(this.value);" value="#ffffff" type="color" id="bgcolor">
-      </div>
-      <div class="plate">
-        <text>Text color</text><br>
-        <input onchange="textc(this.value);" value="#000000" type="color" id="textc">
-      </div>
-      <div class="plate">
-        <text>Text</text><br>
-        <input onkeyup="text(this.value);" value=" " type="text" id="text">
-      </div>
-      <div class="plate">
-        <text>Text size</text><br>
-        <input onkeyup="ts(this.value);" onchange="ts(this.value);" style="width:50px;" type="number" value="40" id="ts">
-      </div>
-
-    </div>
-  </div>
-  <br>
-	<div class="row">
-		<div class="col">
-      <div class="table-responsive f2" style="border-radius: 10px;box-shadow:0px 0px 10px 0px#80808080;">
-        <table class='table table-bordered table-sm table-hover table-striped' style='white-space:nowrap;'>
-            <tr><th colspan="2" style="text-align:center;">Last connected device info</th></tr>
-            <tr><th>DEVICE_TYPE</th><td id="device"></td></tr>
-            <tr><th>DATE & TIME</th><td id="date"></td></tr>
-            <tr><th>HTTP_REFERER</th><td></td></tr>
-            <tr><th>USER_AGENT</th><td id="ua"></td></tr>
-            <tr><th>IP</th><td id="ip"></td></tr>
-            <tr><th></th><td>https://firmtech.tech/products/iot/index.php/devices</td></tr>
-        </table>
-      </div>
-		</div>
-	</div>
-  <br>
-  <div class="row">
-    <div class="col" style="text-align:center;">
-      <p>Last location if have</p>
-      <?php
-        if($lat == 'null'){ ?>
-          <p align="center" style="color:red;">Null</p>
-        <?php } else { ?>
-          <iframe id="iframe" src="https://maps.google.com/maps?q=<?=$lat?>, <?=$lot?>&z=15&output=embed" style="width:50vh;height:50vh;"></iframe>
-        <?php } ?>
-    </div>
-  </div>
-  <br>
-	<div class="row">
-		<div class="col" style="text-align:center;">
-			<a class="btn btn-primary" href="<?=base_url()?>remote/reset">Reset / Clear</a>
-		</div>
-	</div>
-	-->
   <br>
 </div>
 
 <script type="text/javascript">
-  var animate;
   function clic(thi){
       $(thi).attr("class","plate switch");
-      if($(thi).attr("data") != 'off'){
-        $.ajax("<?=base_url()?>index.php/remote/torch/on")
-        .then(function(response){
-          if(response=='err'){
-            alert("error");
-          }
-        }).fail(function(err){ 
-            
-            setTimeout(function(){
-                $(thi).attr("data","off");
-                $(thi).attr("class","plate off");
-            },500);
-            
-        } )
-      }
-      else if($(thi).attr("data") != 'on'){
-        $.ajax("<?=base_url()?>index.php/remote/torch/off")
-        .then(function(response){
-          if(response=='err'){
-            alert("error");
-          }
-        }).fail(function(err){ 
-            
-            setTimeout(function(){
+      if($(thi).attr("data") === 'off'){
+
                 $(thi).attr("data","on");
                 $(thi).attr("class","plate on");
-            },500);
-            
-        } )
-      }
-  };
-  function doblclick(thi){
 
-      $(thi).attr("class","plate switch");
-      if($(thi).attr("data") != 'auto'){
-        $.ajax("<?=base_url()?>index.php/remote/torch/on")
-        .then(function(response){
-          if(response=='err'){
-            alert("error");
-          }
-        }).fail(function(err){ 
-            
-            setTimeout(function(){
-                $(thi).attr("data","auto");
-                $(thi).attr("class","plate auto");
-            },500);
-            
-        } )
+        // $.ajax("<?=base_url()?>index.php/remote/torch/off")
+        // .then(function(response){
+        //   if(response=='err'){
+        //     alert("error");
+        //   }
+        // }).fail(function(err){ 
+        //     setTimeout(function(){
+        //         $(thi).attr("data","on");
+        //         $(thi).attr("class","plate on");
+        //     },500);
+        // })
       }
-      else if($(thi).attr("data") == 'auto'){
-        $.ajax("<?=base_url()?>index.php/remote/torch/off")
-        .then(function(response){
-          if(response=='err'){
-            alert("error");
-          }
-        }).fail(function(err){ 
-            
-            setTimeout(function(){
+      else if($(thi).attr("data") === 'on'){
+
                 $(thi).attr("data","off");
                 $(thi).attr("class","plate off");
-            },500);
-            
-        } )
+
+        // $.ajax("<?=base_url()?>index.php/remote/torch/on")
+        // .then(function(response){
+        //   if(response=='err'){
+        //     alert("error");
+        //   }
+        // }).fail(function(err){ 
+        //     setTimeout(function(){
+        //         $(thi).attr("data","off");
+        //         $(thi).attr("class","plate off");
+        //     },500);
+        // })
       }
-
-
   };
-  function touchstart(thi){
-    animate = setTimeout(function(){
-      $(thi).attr("class","plate switch");
-      if($(thi).attr("data") != 'sense'){
-        $.ajax("<?=base_url()?>index.php/remote/torch/on")
-        .then(function(response){
-          if(response=='err'){
-            alert("error");
-          }
-        }).fail(function(err){ 
-            
-    $('#popbg').css('transition','500ms');
-    $('#popbg').css('top','0px');
-    $('#popbg').css('left','0px');
-    $('#popbg').css('border-radius','0px')
-
-    $('#pop').css('transition','500ms');
-    $('#pop').css('top','0px');
-    $('#pop').css('left','0px');
-    $('#pop').css('border-radius','0px 0px 40px 40px');
-
-            
-            setTimeout(function(){
-                $(thi).attr("data","sense");
-                $(thi).attr("class","plate sense");
-            },500);
-            
-        } )
-      }
-      else if($(thi).attr("data") == 'sense'){
-        $.ajax("<?=base_url()?>index.php/remote/torch/off")
-        .then(function(response){
-          if(response=='err'){
-            alert("error");
-          }
-        }).fail(function(err){ 
-            
-            setTimeout(function(){
-                $(thi).attr("data","off");
-                $(thi).attr("class","plate off");
-            },500);
-        } )
-      }
-    },500);
-  };
-  function touchend(){
-    clearTimeout(animate);
-  }
-</script>
-<script type="text/javascript">
-
-// function bgcolor(thi){
-//   thi = thi.replace('#','');
-//   $.ajax("<?=base_url()?>index.php/remote/css/bgcolor/"+thi)
-//   .then(function(response){
-//     if(response=='err'){
-//       alert("error");
-//     }
-//   }).fail(function(err){ alert("Server failed error"+err); } )
-// }
-// function textc(thi){
-//   thi = thi.replace('#','');
-//   $.ajax("<?=base_url()?>index.php/remote/css/textc/"+thi)
-//   .then(function(response){
-//     if(response=='err'){
-//       alert("error");
-//     }
-//   }).fail(function(err){ alert("Server failed error"+err); } )
-// }
-// function text(thi){
-//   $.ajax("<?=base_url()?>index.php/remote/css/text/"+thi)
-//   .then(function(response){
-//     if(response=='err'){
-//       alert("error");
-//     }
-//   }).fail(function(err){ alert("Server failed error"+err); } )
-// }
-// function ts(thi){
-//   $.ajax("<?=base_url()?>index.php/remote/css/ts/"+thi+"px")
-//   .then(function(response){
-//     if(response=='err'){
-//       alert("error");
-//     }
-//   }).fail(function(err){ alert("Server failed error"+err); } )
-// }
 </script>
 <script>
-var 
-  scr = document.getElementById('scr'),
-  scr2 = document.getElementById('scr2')
 function load(){
-
-    var load = document.getElementById('load');
+    scr = document.getElementById('scr');
+    scr2 = document.getElementById('scr2');
     $('#load').css('background-color','rgba(0,0,0,0.5)');
     $('#load').css('backdrop-filter','blur(10px)');
     setTimeout(function(){
         $('#load').css('background-color','rgba(0,0,0,0.25)');
         $('#load').css('backdrop-filter','blur(5px)');
         setTimeout(function(){
-            $('#load').hide('slow')
+            $('#load').hide('slow');
+            $('#load').css('border-radius', '0px 0px 100px 0px');
         },250); 
     },250);
 
@@ -457,16 +106,7 @@ function load(){
             scr.scrollBy({top:0,left:-10000,behavior:'smooth'});
         },500); 
     },500);
-
-    scr2.scrollBy({top:0,left:10000,behavior:'smooth'});
-    setTimeout(function(){
-        $('.platestart2').attr('class','col plates2');
-        setTimeout(function(){
-            scr2.scrollBy({top:0,left:-10000,behavior:'smooth'});
-        },500); 
-    },500);
 }
-
 </script>
 </body>
 </html>
