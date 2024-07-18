@@ -5,108 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body onload="load()">
 <div id="load"></div>
 <div id="bg_mask"></div>
 <div class="container">
-  <br><br><br>
-  <div class="row">
-    <div class="col platestart" id="scr">
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe90f;</i>
-        <div class="txt">bulb</div>
-      </div>
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe25f;</i>
-        <div class="txt">torch</div>
-      </div>
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe62d;</i>
-      </div>
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe405;</i>
-      </div>
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe3c6;</i>
-      </div>
-      <div class="plate off" data="off" onclick="clic(this);">
-        <i class="material-icons">&#xe41a;</i>
-      </div>
-      <div class="plate off" data="off" style="visibility:hidden;">
-      </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col platestart" id="scr">
+            <div id="flash" class="plate off" data="off" onclick="clic(this, 'flash');">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe90f;</i>
+                    <div class="txt">bulb</div>
+                </div>
+            </div>
+            <div class="plate off" data="off" onclick="clic(this);">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe25f;</i>
+                    <div class="txt">torch</div>
+                </div>
+            </div>
+            <div id="vibrate" class="plate off" data="off" onclick="clic(this, 'vibrate');">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe62d;</i>
+                    <div class="txt">vibrat</div>
+                </div>
+            </div>
+            <div class="plate off" data="off" onclick="clic(this);">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe62d;</i>
+                    <div class="txt">lorem</div>
+                </div>
+            </div>
+            <div class="plate off" data="off" onclick="clic(this);">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe405;</i>
+                    <div class="txt">lorem</div>
+                </div>
+            </div>
+            <div class="plate off" data="off" onclick="clic(this);">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe3c6;</i>
+                    <div class="txt">lorem</div>
+                </div>
+            </div>
+            <div class="plate off" data="off" onclick="clic(this);">
+                <div class="draw-mov"></div>
+                <div class="iplate">
+                    <i class="material-icons">&#xe41a;</i>
+                    <div class="txt">lorem</div>
+                </div>
+            </div>
+            <div class="plate off" data="off" style="visibility:hidden;">
+            </div>
+        </div>
     </div>
-  </div>
-
-  <br>
+    <br>
 </div>
-
-<script type="text/javascript">
-  function clic(thi){
-      $(thi).attr("class","plate switch");
-      if($(thi).attr("data") === 'off'){
-
-                $(thi).attr("data","on");
-                $(thi).attr("class","plate on");
-
-        // $.ajax("<?=base_url()?>index.php/remote/torch/off")
-        // .then(function(response){
-        //   if(response=='err'){
-        //     alert("error");
-        //   }
-        // }).fail(function(err){ 
-        //     setTimeout(function(){
-        //         $(thi).attr("data","on");
-        //         $(thi).attr("class","plate on");
-        //     },500);
-        // })
-      }
-      else if($(thi).attr("data") === 'on'){
-
-                $(thi).attr("data","off");
-                $(thi).attr("class","plate off");
-
-        // $.ajax("<?=base_url()?>index.php/remote/torch/on")
-        // .then(function(response){
-        //   if(response=='err'){
-        //     alert("error");
-        //   }
-        // }).fail(function(err){ 
-        //     setTimeout(function(){
-        //         $(thi).attr("data","off");
-        //         $(thi).attr("class","plate off");
-        //     },500);
-        // })
-      }
-  };
-</script>
-<script>
-function load(){
-    scr = document.getElementById('scr');
-    scr2 = document.getElementById('scr2');
-    $('#load').css('background-color','rgba(0,0,0,0.5)');
-    $('#load').css('backdrop-filter','blur(10px)');
-    setTimeout(function(){
-        $('#load').css('background-color','rgba(0,0,0,0.25)');
-        $('#load').css('backdrop-filter','blur(5px)');
-        setTimeout(function(){
-            $('#load').hide('slow');
-            $('#load').css('border-radius', '0px 0px 100px 0px');
-        },250); 
-    },250);
-
-    scr.scrollBy({top:0,left:10000,behavior:'smooth'});
-    setTimeout(function(){
-        $('.platestart').attr('class','col plates');
-        setTimeout(function(){
-            scr.scrollBy({top:0,left:-10000,behavior:'smooth'});
-        },500); 
-    },500);
-}
-</script>
+<script src="../firebase-config.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>

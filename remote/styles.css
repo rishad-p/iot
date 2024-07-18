@@ -82,20 +82,45 @@ th{
 }
 
 .plate{
-  width:fit-content;
-  padding:15px;
-  margin:10px;
-  border-radius:25px;
-  transition:500ms;
-  cursor: pointer;
+    /*padding:15px;*/
+    margin:10px;
+    border-radius:25px;
+    transition:500ms;
+    cursor: pointer;
+    /*overflow: hidden;*/
+    content-visibility: auto;
+    display: flex;
+    height: 88px;
+    width: 72px;
+}
+.draw-mov{
+    transition: 500ms;
+    transform-origin: center center;
+    transform: rotate(45deg) translateX(85px);
+    width: 100px;
+    height: 100px;
+    border-radius: 25%;
+    background: lightyellow;
+    position: relative;
+}
+.iplate{
+    display: flex;
+    padding: 15px;
+    background: black;
+    margin: 2px;
+    border-radius: 23px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: absolute;
+    width: 38px;
+}
+.plate:hover .draw-mov{
+    transform: rotate(45deg) translateX(0px) scale(1.8);
 }
 .on:active,.off:active,.switch:active,.auto:active{
-  width:fit-content;
-  padding:15px;
-  border-radius:100px;
-  box-shadow:inset 0px 0px 0px 5px red;
+  border-radius:20px;
+  box-shadow:inset 0px 0px 0px 1px red;
   color:red;
-  margin:10px;
   transition:500ms;
 }
 .off{
