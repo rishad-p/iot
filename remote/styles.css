@@ -58,28 +58,6 @@ th{
   border:0.2px solid gray;
   margin-left:20px;
 }
-.platestart2{
-  transition:500ms;
-  display:flex;
-  overflow-x:auto;
-  padding:0px;
-  background:gray;
-  color:gray;
-  border-radius:0px 100px 100px 0px;
-  margin-left:-100%;
-}
-.plates2{
-  transition:500ms;
-  scroll-behavior:smooth;
-  display:flex;
-  overflow-x:auto;
-  padding:10px;
-  backdrop-filter:blur(10px);
-  background-color:rgba(0,0,0,0.5);
-  border-radius:0px 25px 25px 0px;
-  border:0.2px solid gray;
-  margin-left:-20px;
-}
 
 .plate{
     /*padding:15px;*/
@@ -92,6 +70,9 @@ th{
     display: flex;
     height: 88px;
     width: 72px;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+    -moz-outline-style: none;
 }
 .draw-mov{
     transition: 500ms;
@@ -116,6 +97,18 @@ th{
 }
 .plate:hover .draw-mov{
     transform: rotate(45deg) translateX(0px) scale(1.8);
+}
+.plate:focus {
+    outline: none !important;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+    -moz-outline-style: none;
+}
+div:focus{
+    outline: none !important;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+    -moz-outline-style: none;
 }
 .on:active,.off:active,.switch:active,.auto:active{
   border-radius:20px;
