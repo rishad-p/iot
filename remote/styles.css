@@ -47,16 +47,22 @@ th{
   margin-left:100%;
 }
 .plates{
-  transition:500ms;
-  scroll-behavior:smooth;
-  display:flex;
-  overflow-x:auto;
-  padding:10px;
-  backdrop-filter:blur(10px);
-  background-color:rgba(0,0,0,0.5);
-  border-radius:25px 0px 0px 25px;
-  border:0.2px solid gray;
-  margin-left:20px;
+    transition:500ms;
+    scroll-behavior:smooth;
+    display:flex;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding:10px;
+    backdrop-filter:blur(10px);
+    background-color:rgba(0,0,0,0.5);
+    border-radius:25px 0px 0px 25px;
+    border:0.2px solid gray;
+    /*margin-left:20px;*/
+    height: 88px;
+    width: 85vw;
+    right: 0px;
+    position: absolute;
 }
 
 .plate{
@@ -65,9 +71,10 @@ th{
     border-radius:25px;
     transition:500ms;
     cursor: pointer;
-    /*overflow: hidden;*/
+    overflow: hidden;
     content-visibility: auto;
     display: flex;
+    flex: none;
     height: 88px;
     width: 72px;
     outline: none !important;

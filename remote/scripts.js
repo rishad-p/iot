@@ -23,7 +23,7 @@ function load(){
 
     scr.scrollBy({top:0,left:10000,behavior:'smooth'});
     setTimeout(function(){
-        $('.platestart').attr('class','col plates');
+        $('.platestart').attr('class','plates');
         setTimeout(function(){
             scr.scrollBy({top:0,left:-10000,behavior:'smooth'});
         },1000); 
