@@ -33,11 +33,15 @@ function load(){
 function clic(thi, btn){
     if($(thi).attr("data") === 'off'){
         if (btn === 'flash') { db.ref('iot').update({ flash: 'on' }); }
+        else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'int' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); }
+        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate: 'int' }); }
     }
     else if($(thi).attr("data") === 'on'){
         if (btn === 'flash') { db.ref('iot').update({ flash: 'off' }); }
+        else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'int' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'off' }); }
+        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate: 'int' }); }
     }
 };
 
@@ -48,25 +52,98 @@ function readData() {
         if (flash === 'off') {
             $("#flash").attr("class", "plate off");
             $("#flash").attr("data", "off");
+            flashoff();
         }
         else if (flash === 'on') {
             $("#flash").attr("class", "plate on");
             $("#flash").attr("data", "on");
+            flashon();
         }
-
-        // blink_flash 
+        else if (flash === 'int') {
+            $("#flash").attr("class", "plate off");
+            $("#flash").attr("data", "off");
+            setInterval(() => {
+                flashon();
+                setTimeout( () => { flashoff(); } , 250);
+            },500);
+        }
 
         vibrate = snapshot.val().vibrate;
         if (vibrate === 'off') {
             $("#vibrate").attr("class", "plate off");
             $("#vibrate").attr("data", "off");
+            navigator.vibrate(500);
         }
         else if (vibrate === 'on') {
             $("#vibrate").attr("class", "plate on");
             $("#vibrate").attr("data", "on");
+            navigator.vibrate(0);
+        }
+        else if (vibrate === 'int') {
+            $("#vibrate").attr("class", "plate off");
+            $("#vibrate").attr("data", "off");
+            navigator.vibrate([250,250]);
         }
 
     });
+}
+
+function flashon(){
+    const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator;
+    if (SUPPORTS_MEDIA_DEVICES) {
+      navigator.mediaDevices.enumerateDevices().then(devices => {
+        const cameras = devices.filter((device) => device.kind === 'videoinput');
+        if (cameras.length === 0) {
+          throw 'No camera found on this device.';
+        }
+        const camera = cameras[cameras.length - 1];
+        navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: camera.deviceId,
+            facingMode: ['user', 'environment'],
+            height: {ideal: 1080},
+            width: {ideal: 1920}
+          }
+        }).then(stream => {
+          const track = stream.getVideoTracks()[0];
+          const imageCapture = new ImageCapture(track)
+          const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
+              track.applyConstraints({
+                advanced: [{torch: true}]
+              });
+          });
+        });
+      });
+    }
+}
+
+function flashoff(){
+    const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator;
+    if (SUPPORTS_MEDIA_DEVICES) {
+      navigator.mediaDevices.enumerateDevices().then(devices => {
+        const cameras = devices.filter((device) => device.kind === 'videoinput');
+        if (cameras.length === 0) {
+          throw 'No camera found on this device.';
+        }
+        const camera = cameras[cameras.length - 1];
+        navigator.mediaDevices.getUserMedia({
+          video: {
+            deviceId: camera.deviceId,
+            facingMode: ['user', 'environment'],
+            height: {ideal: 1080},
+            width: {ideal: 1920}
+          }
+        }).then(stream => {
+          const track = stream.getVideoTracks()[0];
+          const imageCapture = new ImageCapture(track)
+          const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
+              track.applyConstraints({
+                advanced: [{torch: false}]
+              });
+          });
+        });
+      });
+    }
 }
 
 function srcblock() {
