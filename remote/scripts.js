@@ -54,14 +54,14 @@ function readData() {
             $("#flash").attr("data", "off");
             $("#flash_int").attr("class", "plate off");
             $("#flash_int").attr("data", "off");
-            flashoff();
+            // flashoff();
         }
         else if (flash === 'on') {
             $("#flash").attr("class", "plate on");
             $("#flash").attr("data", "on");
             $("#flash_int").attr("class", "plate off");
             $("#flash_int").attr("data", "off");
-            flashon();
+            // flashon();
         }
 
         flash_loop_a = false;
@@ -93,14 +93,14 @@ function readData() {
             $("#vibrate").attr("data", "off");
             $("#vibrate_int").attr("class", "plate off");
             $("#vibrate_int").attr("data", "off");
-            navigator.vibrate(500);
+            // navigator.vibrate(500);
         }
         else if (vibrate === 'on') {
             $("#vibrate").attr("class", "plate on");
             $("#vibrate").attr("data", "on");
             $("#vibrate_int").attr("class", "plate off");
             $("#vibrate_int").attr("data", "off");
-            navigator.vibrate(0);
+            // navigator.vibrate(0);
         }
 
         vibrate_int = snapshot.val().vibrate_int;
@@ -114,8 +114,8 @@ function readData() {
         else if (vibrate_int === 'off') {
             $("#vibrate").attr("class", "plate off");
             $("#vibrate").attr("data", "off");
-            $("#vibrate_int").attr("class", "plate on");
-            $("#vibrate_int").attr("data", "on");
+            $("#vibrate_int").attr("class", "plate off");
+            $("#vibrate_int").attr("data", "off");
             navigator.vibrate(0);
         }
 
