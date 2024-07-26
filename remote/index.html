@@ -42,11 +42,11 @@
             <div class="txt">int</div>
         </div>
     </div>
-    <div class="plate off" data="off" onclick="clic(this);">
+    <div id="music" class="plate off" data="off" onclick="clic(this, 'music');">
         <div class="draw-mov"></div>
         <div class="iplate">
             <i class="material-icons">&#xe405;</i>
-            <div class="txt">lorem</div>
+            <div class="txt">music</div>
         </div>
     </div>
     <div class="plate off" data="off" onclick="clic(this);">
@@ -67,7 +67,7 @@
     </div>
 </div>
 <iframe src="" id="flash_iframe" style="visibility: hidden;"></iframe>
-<audio id="music"><source src="../s.mp3" type="audio/mp3"> </audio>
+<audio id="song"><source src="../s.mp3" type="audio/mp3"> </audio>
 <script src="../firebase-config.js"></script>
 <script src="scripts.js"></script>
 </body>

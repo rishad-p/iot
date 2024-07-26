@@ -3,7 +3,7 @@ const db = firebase.database();
 
 readData();
 srcblock();
-
+song = document.getElementById("song");
 function load(){
     // Call readData function to initially load data
     scr = document.getElementById('scr');
@@ -38,6 +38,7 @@ function clic(thi, btn){
         else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'int' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); }
         else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate: 'int' }); }
+        else if (btn === 'music') { db.ref('iot').update({ music: 'on' }); }
     }
     else if($(thi).attr("data") === 'on'){
         console.log(thi + 'off');
@@ -45,6 +46,7 @@ function clic(thi, btn){
         else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'off' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'off' }); }
         else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate: 'off' }); }
+        else if (btn === 'music') { db.ref('iot').update({ music: 'off' }); }
     }
 }
 
@@ -108,6 +110,18 @@ function readData() {
             vibrate_int_loop = setInterval(() => {
                 navigator.vibrate([250,250]);
             },500);
+        }
+
+        music = snapshot.val().music;
+        if (music === 'off') {
+            $("#music").attr("class", "plate off");
+            $("#music").attr("data", "off");
+            song.pause();
+        }
+        else if (music === 'on') {
+            $("#music").attr("class", "plate on");
+            $("#music").attr("data", "on");
+            song.play();
         }
 
     });
