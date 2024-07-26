@@ -33,7 +33,6 @@ function load(){
 
 function clic(thi, btn){
     if($(thi).attr("data") === 'off'){
-        console.log(thi + 'on');
              if (btn === 'flash') { db.ref('iot').update({ flash: 'on' }); }
         else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'int' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); }
@@ -41,7 +40,6 @@ function clic(thi, btn){
         else if (btn === 'music') { db.ref('iot').update({ music: 'on' }); }
     }
     else if($(thi).attr("data") === 'on'){
-        console.log(thi + 'off');
              if (btn === 'flash') { db.ref('iot').update({ flash: 'off' }); }
         else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'off' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'off' }); }
@@ -89,7 +87,6 @@ function readData() {
             $("#vibrate_int").attr("data", "off");
             clearInterval(vibrate_loop);
             clearInterval(vibrate_int_loop);
-            // navigator.vibrate(0);
         }
         else if (vibrate === 'on') {
             $("#vibrate").attr("class", "plate on");
