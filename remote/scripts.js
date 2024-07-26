@@ -1,10 +1,11 @@
 // Reference to the Firebase database
 const db = firebase.database();
 
+readData();
+srcblock();
+
 function load(){
     // Call readData function to initially load data
-    readData();
-    srcblock()
     scr = document.getElementById('scr');
     $('#load').css('background-color','rgba(0,0,0,0.5)');
     $('#load').css('backdrop-filter','blur(10px)');
@@ -32,18 +33,23 @@ function load(){
 
 function clic(thi, btn){
     if($(thi).attr("data") === 'off'){
-             if (btn === 'flash') { db.ref('iot').update({ flash: 'on' }); }
-        else if (btn === 'flash_int') { db.ref('iot').update({ flash_int: 'int' }); }
-        else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); }
-        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate_int: 'int' }); }
+        console.log(thi + 'on');
+             if (btn === 'flash') { db.ref('iot').update({ flash: 'on' }); db.ref('iot').update({ flash_int: 'off' }); }
+        else if (btn === 'flash_int') { db.ref('iot').update({ flash_int: 'int' }); db.ref('iot').update({ flash: 'off' }); }
+        else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); db.ref('iot').update({ vibrate_int: 'off' }); }
+        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate_int: 'int' }); db.ref('iot').update({ vibrate: 'off' }); }
     }
     else if($(thi).attr("data") === 'on'){
+        console.log(thi + 'off');
              if (btn === 'flash') { db.ref('iot').update({ flash: 'off' }); }
         else if (btn === 'flash_int') { db.ref('iot').update({ flash_int: 'off' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'off' }); }
         else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate_int: 'off' }); }
     }
 };
+
+        flash_loop_a = false;
+        flash_loop_b = false;
 
 function readData() {
     db.ref('iot').on('value', function(snapshot) {
@@ -52,24 +58,16 @@ function readData() {
         if (flash === 'off') {
             $("#flash").attr("class", "plate off");
             $("#flash").attr("data", "off");
-            $("#flash_int").attr("class", "plate off");
-            $("#flash_int").attr("data", "off");
-            // flashoff();
+            flashoff();
         }
         else if (flash === 'on') {
             $("#flash").attr("class", "plate on");
             $("#flash").attr("data", "on");
-            $("#flash_int").attr("class", "plate off");
-            $("#flash_int").attr("data", "off");
-            // flashon();
+            flashon();
         }
 
-        flash_loop_a = false;
-        flash_loop_b = false;
         flash_int = snapshot.val().flash_int;
         if (flash_int === 'int') {
-            $("#flash").attr("class", "plate off");
-            $("#flash").attr("data", "off");
             $("#flash_int").attr("class", "plate on");
             $("#flash_int").attr("data", "on");
             flash_loop_a = setInterval(() => {
@@ -78,10 +76,9 @@ function readData() {
             },500);
         }
         else if (flash_int === 'off') {
-            $("#flash").attr("class", "plate off");
-            $("#flash").attr("data", "off");
             $("#flash_int").attr("class", "plate off");
             $("#flash_int").attr("data", "off");
+            flashoff();
             clearTimeout(flash_loop_a);
             clearTimeout(flash_loop_b);
             flashoff();
@@ -91,29 +88,21 @@ function readData() {
         if (vibrate === 'off') {
             $("#vibrate").attr("class", "plate off");
             $("#vibrate").attr("data", "off");
-            $("#vibrate_int").attr("class", "plate off");
-            $("#vibrate_int").attr("data", "off");
-            // navigator.vibrate(500);
+            navigator.vibrate(500);
         }
         else if (vibrate === 'on') {
             $("#vibrate").attr("class", "plate on");
             $("#vibrate").attr("data", "on");
-            $("#vibrate_int").attr("class", "plate off");
-            $("#vibrate_int").attr("data", "off");
-            // navigator.vibrate(0);
+            navigator.vibrate(0);
         }
 
         vibrate_int = snapshot.val().vibrate_int;
         if (vibrate_int === 'int') {
-            $("#vibrate").attr("class", "plate off");
-            $("#vibrate").attr("data", "off");
             $("#vibrate_int").attr("class", "plate on");
             $("#vibrate_int").attr("data", "on");
             navigator.vibrate([250,250]);
         }
         else if (vibrate_int === 'off') {
-            $("#vibrate").attr("class", "plate off");
-            $("#vibrate").attr("data", "off");
             $("#vibrate_int").attr("class", "plate off");
             $("#vibrate_int").attr("data", "off");
             navigator.vibrate(0);
