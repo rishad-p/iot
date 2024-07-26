@@ -34,22 +34,22 @@ function load(){
 function clic(thi, btn){
     if($(thi).attr("data") === 'off'){
         console.log(thi + 'on');
-             if (btn === 'flash') { db.ref('iot').update({ flash: 'on' }); db.ref('iot').update({ flash_int: 'off' }); }
-        else if (btn === 'flash_int') { db.ref('iot').update({ flash_int: 'int' }); db.ref('iot').update({ flash: 'off' }); }
-        else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); db.ref('iot').update({ vibrate_int: 'off' }); }
-        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate_int: 'int' }); db.ref('iot').update({ vibrate: 'off' }); }
+             if (btn === 'flash') { db.ref('iot').update({ flash: 'on' }); }
+        else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'int' }); }
+        else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'on' }); }
+        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate: 'int' }); }
     }
     else if($(thi).attr("data") === 'on'){
         console.log(thi + 'off');
              if (btn === 'flash') { db.ref('iot').update({ flash: 'off' }); }
-        else if (btn === 'flash_int') { db.ref('iot').update({ flash_int: 'off' }); }
+        else if (btn === 'flash_int') { db.ref('iot').update({ flash: 'off' }); }
         else if (btn === 'vibrate') { db.ref('iot').update({ vibrate: 'off' }); }
-        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate_int: 'off' }); }
+        else if (btn === 'vibrate_int') { db.ref('iot').update({ vibrate: 'off' }); }
     }
-};
+}
 
-        flash_loop_a = false;
-        flash_loop_b = false;
+vibrate_loop = false;
+vibrate_int_loop = false;
 
 function readData() {
     db.ref('iot').on('value', function(snapshot) {
@@ -58,54 +58,56 @@ function readData() {
         if (flash === 'off') {
             $("#flash").attr("class", "plate off");
             $("#flash").attr("data", "off");
+            $("#flash_int").attr("class", "plate off");
+            $("#flash_int").attr("data", "off");
+            $("#flash_iframe").attr("src", " ");
             flashoff();
         }
         else if (flash === 'on') {
             $("#flash").attr("class", "plate on");
             $("#flash").attr("data", "on");
-            flashon();
-        }
-
-        flash_int = snapshot.val().flash_int;
-        if (flash_int === 'int') {
-            $("#flash_int").attr("class", "plate on");
-            $("#flash_int").attr("data", "on");
-            flash_loop_a = setInterval(() => {
-                flashon();
-                flash_loop_b = setTimeout( () => { flashoff(); } , 250);
-            },500);
-        }
-        else if (flash_int === 'off') {
             $("#flash_int").attr("class", "plate off");
             $("#flash_int").attr("data", "off");
-            flashoff();
-            clearTimeout(flash_loop_a);
-            clearTimeout(flash_loop_b);
-            flashoff();
+            $("#flash_iframe").attr("src", " ");
+            flashon();
+        }
+        else if (flash === 'int') {
+            $("#flash").attr("class", "plate off");
+            $("#flash").attr("data", "off");
+            $("#flash_int").attr("class", "plate on");
+            $("#flash_int").attr("data", "on");
+            $("#flash_iframe").attr("src", "flash_int.html");
         }
 
         vibrate = snapshot.val().vibrate;
         if (vibrate === 'off') {
             $("#vibrate").attr("class", "plate off");
             $("#vibrate").attr("data", "off");
-            navigator.vibrate(500);
+            $("#vibrate_int").attr("class", "plate off");
+            $("#vibrate_int").attr("data", "off");
+            clearInterval(vibrate_loop);
+            clearInterval(vibrate_int_loop);
+            // navigator.vibrate(0);
         }
         else if (vibrate === 'on') {
             $("#vibrate").attr("class", "plate on");
             $("#vibrate").attr("data", "on");
-            navigator.vibrate(0);
-        }
-
-        vibrate_int = snapshot.val().vibrate_int;
-        if (vibrate_int === 'int') {
-            $("#vibrate_int").attr("class", "plate on");
-            $("#vibrate_int").attr("data", "on");
-            navigator.vibrate([250,250]);
-        }
-        else if (vibrate_int === 'off') {
             $("#vibrate_int").attr("class", "plate off");
             $("#vibrate_int").attr("data", "off");
-            navigator.vibrate(0);
+            clearInterval(vibrate_int_loop);
+            vibrate_loop = setInterval(() => {
+                navigator.vibrate(500);
+            },500);
+        }
+        else if (vibrate === 'int') {
+            $("#vibrate").attr("class", "plate off");
+            $("#vibrate").attr("data", "off");
+            $("#vibrate_int").attr("class", "plate on");
+            $("#vibrate_int").attr("data", "on");
+            clearInterval(vibrate_loop);
+            vibrate_int_loop = setInterval(() => {
+                navigator.vibrate([250,250]);
+            },500);
         }
 
     });
